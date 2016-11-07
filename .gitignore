@@ -1,0 +1,7 @@
+.DS_Store
+Thumbs.db
+Session.vim
+.idea
+templates_c/*
+!.gitignore
+!.gitkeep
