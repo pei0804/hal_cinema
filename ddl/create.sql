@@ -119,24 +119,24 @@ CREATE TABLE t_reserve
 
 CREATE TABLE t_seat
 (
-    theatre_id int unsigned NOT NULL,
     seat char(2) NOT NULL,
+    theatre_id int unsigned NOT NULL,
     created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     member_id int unsigned NOT NULL,
-    PRIMARY KEY (theatre_id, seat)
+    PRIMARY KEY (seat, theatre_id)
 );
 
 
 CREATE TABLE t_ticket
 (
     ticket_no int unsigned NOT NULL AUTO_INCREMENT,
-    id int unsigned NOT NULL,
+    reserve_id int unsigned NOT NULL,
     type_id int unsigned NOT NULL,
     price int NOT NULL,
     created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (ticket_no, id)
+    PRIMARY KEY (ticket_no, reserve_id)
 );
 
 
@@ -248,7 +248,7 @@ ALTER TABLE t_reserve
 
 
 ALTER TABLE t_ticket
-    ADD FOREIGN KEY (id)
+    ADD FOREIGN KEY (reserve_id)
     REFERENCES t_reserve (id)
     ON UPDATE RESTRICT
     ON DELETE RESTRICT
