@@ -5,7 +5,18 @@ class MovieSchedule {
     private $id;
     private $theaterId;
     private $movieId;
+    private $startAt;
+    private $endAt;
     private $memberId;
+
+    // INNER JOIN
+    private $title;
+    private $movieTime;
+    private $releaseDate;
+
+    // ETC
+    private $startAtArray;
+    private $endAtArray;
 
     /**
      * @return mixed
@@ -58,6 +69,38 @@ class MovieSchedule {
     /**
      * @return mixed
      */
+    public function getStartAt()
+    {
+        return $this->startAt;
+    }
+
+    /**
+     * @param mixed $startAt
+     */
+    public function setStartAt($startAt)
+    {
+        $this->start_at = $startAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEndAt()
+    {
+        return $this->endAt;
+    }
+
+    /**
+     * @param mixed $endAt
+     */
+    public function setEndAt($endAt)
+    {
+        $this->end_at = $endAt;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getMemberId()
     {
         return $this->memberId;
@@ -70,4 +113,87 @@ class MovieSchedule {
     {
         $this->memberId = $memberId;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMovieTime()
+    {
+        return $this->movieTime;
+    }
+
+    /**
+     * @param mixed $movieTime
+     */
+    public function setMovieTime($movieTime)
+    {
+        $this->movieTime = $movieTime;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReleaseDate()
+    {
+        return $this->releaseDate;
+    }
+
+    /**
+     * @param mixed $releaseDate
+     */
+    public function setReleaseDate($releaseDate)
+    {
+        $this->releaseDate = $releaseDate;
+    }
+
+    
+
+    /**
+     * @return mixed
+     */
+    public function getStartAtArray()
+    {
+        return $this->startAtArray;
+    }
+
+    /**
+     * @param mixed $startAtArray
+     */
+    public function setStartAtArray($startAtArray)
+    {
+        $this->startAtArray = $startAtArray;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEndAtArray()
+    {
+        return $this->endAtArray;
+    }
+
+    /**
+     * @param mixed $endAtArray
+     */
+    public function setEndAtArray($endAtArray)
+    {
+        $this->endAtArray = $endAtArray;
+    }
+
 }
