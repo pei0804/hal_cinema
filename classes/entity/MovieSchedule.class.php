@@ -13,6 +13,7 @@ class MovieSchedule {
     private $title;
     private $movieTime;
     private $releaseDate;
+    private $movieScheduleIdArray;
 
     // ETC
     private $startAtArray;
@@ -149,6 +150,22 @@ class MovieSchedule {
     /**
      * @return mixed
      */
+    public function getMovieScheduleIdArray()
+    {
+        return $this->movieScheduleIdArray;
+    }
+
+    /**
+     * @param mixed $movieScheduleIdArray
+     */
+    public function setMovieScheduleIdArray($movieScheduleIdArray)
+    {
+        $this->movieScheduleIdArray = $movieScheduleIdArray;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getReleaseDate()
     {
         return $this->releaseDate;
@@ -161,8 +178,6 @@ class MovieSchedule {
     {
         $this->releaseDate = $releaseDate;
     }
-
-    
 
     /**
      * @return mixed
