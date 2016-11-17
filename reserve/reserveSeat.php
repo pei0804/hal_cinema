@@ -33,7 +33,7 @@ $tplPath = "reserve/seat.tpl";
 //        // 座席情報
 //        $seatDAO = new SeatDAO($db);
 //        $seats = array();
-//        $seats = $seatDAO->findByTheatreId($movieSchedule->getTheaterId());
+//        $seats = $seatDAO->findByTheaterId($movieSchedule->getTheaterId());
 //        $smarty->assign("seats", $seats);
 //
 //        // 予約情報
@@ -45,7 +45,7 @@ $tplPath = "reserve/seat.tpl";
         // 座席情報
         $seatDAO = new SeatDAO($db);
         $seats = array();
-        $seats = $seatDAO->findByTheatreId(1);
+        $seats = $seatDAO->findByTheaterId(1);
 
         // HACK 便宜的に小文字でインクリメントしているが、出来れば大文字でインクリメントした方がスマート
 //        $seatRowAlphabet = 'a';

@@ -3,7 +3,7 @@
 class Seat {
 
     private $seat;
-    private $theatreId;
+    private $theaterId;
     private $memberId;
 
     /**
@@ -25,17 +25,17 @@ class Seat {
     /**
      * @return mixed
      */
-    public function getTheatreId()
+    public function getTheaterId()
     {
-        return $this->theatreId;
+        return $this->theaterId;
     }
 
     /**
-     * @param mixed $theatreId
+     * @param mixed $theaterId
      */
-    public function setTheatreId($theatreId)
+    public function setTheaterId($theaterId)
     {
-        $this->theatreId = $theatreId;
+        $this->theaterId = $theaterId;
     }
 
     /**
