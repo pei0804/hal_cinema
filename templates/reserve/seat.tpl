@@ -9,6 +9,7 @@
 </head>
 
 <body>
+<p>{$scheduleId|default:"値来てない"}</p>
 {$seatRow|default:""}
 <table>
     <tbody>
