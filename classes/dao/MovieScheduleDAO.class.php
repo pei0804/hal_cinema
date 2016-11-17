@@ -19,14 +19,14 @@ class MovieScheduleDAO {
         if($result && $row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $id = $row["id"];
             $movieId = $row["movie_id"];
-            $theatreId = $row["theatre_id"];
+            $theaterId = $row["theater_id"];
             $startAt = $row["start_at"];
             $endAt = $row["end_at"];
 
             $movieScheduleEntity = new MovieSchedule();
             $movieScheduleEntity->setId($id);
             $movieScheduleEntity->setMovieId($movieId);
-            $movieScheduleEntity->setTheaterId($theatreId);
+            $movieScheduleEntity->setTheaterId($theaterId);
             $movieScheduleEntity->setStartAt($startAt);
             $movieScheduleEntity->setEndAt($endAt);
         }
@@ -38,7 +38,7 @@ class MovieScheduleDAO {
         $sql  = "SELECT ";
         $sql .= "m.id as movie_id,";
         $sql .= "m.title as title,";
-        $sql .= "ms.theatre_id as theatre_id,";
+        $sql .= "ms.theater_id as theater_id,";
         $sql .= "GROUP_CONCAT(ms.id order by ms.id) as movie_schedule_id_array,";
         $sql .= "m.movie_time as movie_time,";
         $sql .= "m.release_date as release_date,";
@@ -56,7 +56,7 @@ class MovieScheduleDAO {
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $movieId = $row["movie_id"];
             $title = $row["title"];
-            $theatreId = $row["theatre_id"];
+            $theaterId = $row["theater_id"];
             $movieScheduleIdArray = $row["movie_schedule_id_array"];
             $movieTime = $row["movie_time"];
             $releaseDate = $row["release_date"];
@@ -66,7 +66,7 @@ class MovieScheduleDAO {
             $movieScheduleEntity = new MovieSchedule();
             $movieScheduleEntity->setMovieId($movieId);
             $movieScheduleEntity->setTitle($title);
-            $movieScheduleEntity->setTheaterId($theatreId);
+            $movieScheduleEntity->setTheaterId($theaterId);
             $movieScheduleEntity->setMovieScheduleIdArray($movieScheduleIdArray);
             $movieScheduleEntity->setMovieTime($movieTime);
             $movieScheduleEntity->setReleaseDate($releaseDate);
