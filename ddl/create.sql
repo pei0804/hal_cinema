@@ -199,11 +199,11 @@ INSERT INTO `m_price_type` (`id`, `name`, `price`, `description`, `class`, `week
 -- --------------------------------------------------------
 
 --
--- Table structure for table `m_theatre`
+-- Table structure for table `m_theater`
 --
 
-DROP TABLE IF EXISTS `m_theatre`;
-CREATE TABLE `m_theatre` (
+DROP TABLE IF EXISTS `m_theater`;
+CREATE TABLE `m_theater` (
   `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -211,10 +211,10 @@ CREATE TABLE `m_theatre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `m_theatre`
+-- Dumping data for table `m_theater`
 --
 
-INSERT INTO `m_theatre` (`id`, `created_at`, `updated_at`, `member_id`) VALUES
+INSERT INTO `m_theater` (`id`, `created_at`, `updated_at`, `member_id`) VALUES
 (1, '2016-11-09 12:07:27', '2016-11-09 12:07:27', 31),
 (2, '2016-11-09 12:07:27', '2016-11-09 12:07:27', 31),
 (3, '2016-11-09 12:07:27', '2016-11-09 12:07:27', 31),
@@ -233,7 +233,7 @@ INSERT INTO `m_theatre` (`id`, `created_at`, `updated_at`, `member_id`) VALUES
 DROP TABLE IF EXISTS `t_movie_schedule`;
 CREATE TABLE `t_movie_schedule` (
   `id` int(10) UNSIGNED NOT NULL,
-  `theatre_id` int(10) UNSIGNED NOT NULL,
+  `theater_id` int(10) UNSIGNED NOT NULL,
   `movie_id` int(10) UNSIGNED NOT NULL,
   `start_at` datetime NOT NULL,
   `end_at` datetime NOT NULL,
@@ -246,7 +246,7 @@ CREATE TABLE `t_movie_schedule` (
 -- Dumping data for table `t_movie_schedule`
 --
 
-INSERT INTO `t_movie_schedule` (`id`, `theatre_id`, `movie_id`, `start_at`, `end_at`, `created_at`, `updated_at`, `member_id`) VALUES
+INSERT INTO `t_movie_schedule` (`id`, `theater_id`, `movie_id`, `start_at`, `end_at`, `created_at`, `updated_at`, `member_id`) VALUES
 (1, 1, 1, '2016-11-10 10:00:00', '2016-11-10 12:00:00', '2016-11-09 12:08:03', '2016-11-12 10:58:37', 31),
 (2, 1, 1, '2016-11-10 12:00:00', '2016-11-10 14:00:00', '2016-11-09 12:08:03', '2016-11-12 10:58:41', 31),
 (3, 1, 1, '2016-11-10 14:00:00', '2016-11-10 16:00:00', '2016-11-09 12:08:03', '2016-11-12 10:58:47', 31),
@@ -293,7 +293,7 @@ INSERT INTO `t_reserve` (`id`, `member_id`, `schedule_id`, `pay_all_price`, `cre
 
 DROP TABLE IF EXISTS `t_seat`;
 CREATE TABLE `t_seat` (
-  `theatre_id` int(10) UNSIGNED NOT NULL,
+  `theater_id` int(10) UNSIGNED NOT NULL,
   `seat` char(4) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -304,7 +304,7 @@ CREATE TABLE `t_seat` (
 -- Dumping data for table `t_seat`
 --
 
-INSERT INTO `t_seat` (`theatre_id`, `seat`, `created_at`, `updated_at`, `member_id`) VALUES
+INSERT INTO `t_seat` (`theater_id`, `seat`, `created_at`, `updated_at`, `member_id`) VALUES
 (1, 'A1', '2016-11-09 12:55:01', '2016-11-09 12:55:01', 31),
 (1, 'A2', '2016-11-09 12:55:01', '2016-11-09 12:55:01', 31),
 (1, 'A3', '2016-11-09 12:55:01', '2016-11-09 12:55:01', 31),
@@ -395,9 +395,9 @@ ALTER TABLE `m_price_type`
   ADD KEY `member_id` (`member_id`);
 
 --
--- Indexes for table `m_theatre`
+-- Indexes for table `m_theater`
 --
-ALTER TABLE `m_theatre`
+ALTER TABLE `m_theater`
   ADD PRIMARY KEY (`id`),
   ADD KEY `member_id` (`member_id`);
 
@@ -408,7 +408,7 @@ ALTER TABLE `t_movie_schedule`
   ADD PRIMARY KEY (`id`),
   ADD KEY `member_id` (`member_id`),
   ADD KEY `movie_id` (`movie_id`),
-  ADD KEY `theatre_id` (`theatre_id`);
+  ADD KEY `theater_id` (`theater_id`);
 
 --
 -- Indexes for table `t_reserve`
@@ -422,7 +422,7 @@ ALTER TABLE `t_reserve`
 -- Indexes for table `t_seat`
 --
 ALTER TABLE `t_seat`
-  ADD PRIMARY KEY (`theatre_id`,`seat`),
+  ADD PRIMARY KEY (`theater_id`,`seat`),
   ADD KEY `member_id` (`member_id`);
 
 --
@@ -453,9 +453,9 @@ ALTER TABLE `m_member`
 ALTER TABLE `m_movie`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
--- AUTO_INCREMENT for table `m_theatre`
+-- AUTO_INCREMENT for table `m_theater`
 --
-ALTER TABLE `m_theatre`
+ALTER TABLE `m_theater`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `t_movie_schedule`
@@ -495,10 +495,10 @@ ALTER TABLE `m_price_type`
   ADD CONSTRAINT `m_price_type_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `m_member` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `m_theatre`
+-- Constraints for table `m_theater`
 --
-ALTER TABLE `m_theatre`
-  ADD CONSTRAINT `m_theatre_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `m_member` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `m_theater`
+  ADD CONSTRAINT `m_theater_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `m_member` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `t_movie_schedule`
@@ -506,7 +506,7 @@ ALTER TABLE `m_theatre`
 ALTER TABLE `t_movie_schedule`
   ADD CONSTRAINT `t_movie_schedule_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `m_member` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `t_movie_schedule_ibfk_2` FOREIGN KEY (`movie_id`) REFERENCES `m_movie` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `t_movie_schedule_ibfk_3` FOREIGN KEY (`theatre_id`) REFERENCES `m_theatre` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `t_movie_schedule_ibfk_3` FOREIGN KEY (`theater_id`) REFERENCES `m_theater` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `t_reserve`
@@ -520,7 +520,7 @@ ALTER TABLE `t_reserve`
 --
 ALTER TABLE `t_seat`
   ADD CONSTRAINT `t_seat_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `m_member` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `t_seat_ibfk_2` FOREIGN KEY (`theatre_id`) REFERENCES `m_theatre` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `t_seat_ibfk_2` FOREIGN KEY (`theater_id`) REFERENCES `m_theater` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `t_ticket`
