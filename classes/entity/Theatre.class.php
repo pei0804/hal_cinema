@@ -1,6 +1,6 @@
 <?php
 
-class Theatre {
+class Theater {
 
     private $id;
     private $memberId;
