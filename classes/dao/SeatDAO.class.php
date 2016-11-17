@@ -9,18 +9,18 @@ class SeatDAO {
         $this->db = $db;
     }
 
-    public function findByTheatreId($theatreId) {
-        $sql = "SELECT * FROM t_seat WHERE theatre_id = :theatre_id ORDER BY seat";
+    public function findByTheatreId($theaterId) {
+        $sql = "SELECT * FROM t_seat WHERE theater_id = :theater_id ORDER BY seat";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(":theatre_id", $theatreId, PDO::PARAM_INT);
+        $stmt->bindValue(":theater_id", $theaterId, PDO::PARAM_INT);
         $result = $stmt->execute();
         $seatList = array();
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $theatreId = $row["theatre_id"];
+            $theaterId = $row["theater_id"];
             $seat = $row["seat"];
 
             $seatEntity = new seat();
-            $seatEntity->setTheatreId($theatreId);
+            $seatEntity->setTheatreId($theaterId);
             $seatEntity->setSeat($seat);
             $seatList[$seat] = $seatEntity;
         }
