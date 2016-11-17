@@ -7,6 +7,9 @@ class Reserve {
     private $scheduleId;
     private $payAllPrice;
 
+    // INNER JOIN
+    private $seat;
+
     /**
      * @return mixed
      */
@@ -70,4 +73,21 @@ class Reserve {
     {
         $this->payAllPrice = $payAllPrice;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSeat()
+    {
+        return $this->seat;
+    }
+
+    /**
+     * @param mixed $seat
+     */
+    public function setSeat($seat)
+    {
+        $this->seat = $seat;
+    }
+    
 }

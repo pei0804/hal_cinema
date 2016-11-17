@@ -9,6 +9,39 @@
 </head>
 
 <body>
+{$seatRow|default:""}
+<table>
+    <tbody>
+    {foreach from=$seatMap item=item name="seatMapLoop"}
+        <tr>
+            <td>{$item}</td>
+        </tr>
+    {/foreach}
+    </tbody>
+</table>
+
+<table>
+<tbody>
+{foreach from=$seats item=item name="seatsLoop"}
+    <tr>
+        <td>{$item->getSeat()}</td>
+    </tr>
+{/foreach}
+</tbody>
+</table>
+
+
+{*<hr>*}
+{*<table>*}
+    {*<tbody>*}
+    {*{foreach from=$reserves item=item name="reservesLoop"}*}
+        {*<tr>*}
+            {*<td>{$item->getSeat()}</td>*}
+        {*</tr>*}
+    {*{/foreach}*}
+    {*</tbody>*}
+{*</table>*}
+
 <div class="wrapper">
     <div class="container">
         <div id="seat-map">
@@ -34,6 +67,11 @@
 <script src="/hal_cinema/js/jquery.seat-charts.min.js"></script>
 
 <script>
+//    var seatMap = [
+//            'A1,A2,A3,A4,A5,A6,A7,A8'
+//    ]
+
+
     var firstSeatLabel = 1;
 
     $(document).ready(function() {
@@ -47,10 +85,6 @@
                         'ee_ee',
                         'ee_ee',
                         'ee___',
-                        'ee_ee',
-                        'ee_ee',
-                        'ee_ee',
-                        'eeeee',
                     ],
                     seats: {
                         f: {
@@ -66,10 +100,11 @@
 
                     },
                     naming : {
-                        top : false,
+                        top : true,
                         getLabel : function (character, row, column) {
                             return firstSeatLabel++;
                         },
+                        rows: ['A', 'B', 'C', 'D', 'E'],
                     },
                     legend : {
                         node : $('#legend'),
