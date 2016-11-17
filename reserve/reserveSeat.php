@@ -16,6 +16,7 @@ $smarty->setTemplateDir($_SERVER['DOCUMENT_ROOT'] . "/hal_cinema/templates/");
 $smarty->setCompileDir($_SERVER['DOCUMENT_ROOT'] . "/hal_cinema/templates_c/");
 
 $tplPath = "reserve/seat.tpl";
+$scheduleId = trim($_GET["scheduleId"]);
 //if(loginCheck()) {
 //    $validationMsgs[] = "ログインしていないか、前回ログインしてから一定時間が経過しています。もう一度ログインし直してください。";
 //    $smarty->assign("validationMsgs", $validationMsgs);
@@ -78,6 +79,7 @@ $tplPath = "reserve/seat.tpl";
         }
         $seatMap[] = $seatRow;
 
+        $smarty->assign("scheduleId", $scheduleId);
         $smarty->assign("seats", $seats);
         $smarty->assign("seatMap", $seatMap);
 
