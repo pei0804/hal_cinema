@@ -12,7 +12,7 @@ class SeatDAO {
     public function findByTheatreId($theatreId) {
         $sql = "SELECT * FROM t_seat WHERE theatre_id = :theatre_id ORDER BY seat";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(":theatre_id ", $theatreId, PDO::PARAM_INT);
+        $stmt->bindValue(":theatre_id", $theatreId, PDO::PARAM_INT);
         $result = $stmt->execute();
         $seatList = array();
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -20,7 +20,7 @@ class SeatDAO {
             $seat = $row["seat"];
 
             $seatEntity = new seat();
-            $seatEntity->setTheaterId($theatreId);
+            $seatEntity->setTheatreId($theatreId);
             $seatEntity->setSeat($seat);
             $seatList[$seat] = $seatEntity;
         }

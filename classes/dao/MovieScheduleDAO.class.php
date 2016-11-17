@@ -10,6 +10,29 @@ class MovieScheduleDAO {
         $this->db = $db;
     }
 
+    public function findByPK($id) {
+        $sql = "SELECT * FROM t_movie_schedule WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+        $result = $stmt->execute();
+        $movieScheduleEntity = null;
+        if($result && $row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $id = $row["id"];
+            $movieId = $row["movie_id"];
+            $theatreId = $row["theatre_id"];
+            $startAt = $row["start_at"];
+            $endAt = $row["end_at"];
+
+            $movieScheduleEntity = new MovieSchedule();
+            $movieScheduleEntity->setId($id);
+            $movieScheduleEntity->setMovieId($movieId);
+            $movieScheduleEntity->setTheaterId($theatreId);
+            $movieScheduleEntity->setStartAt($startAt);
+            $movieScheduleEntity->setEndAt($endAt);
+        }
+        return $movieScheduleEntity;
+    }
+
     public function findByDate($date) {
 
         $sql  = "SELECT ";
