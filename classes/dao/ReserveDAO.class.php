@@ -16,7 +16,7 @@ class ReserveDAO {
         $sql .= "ORDER BY seat";
 
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(":schedule_id ", $scheduleId, PDO::PARAM_INT);
+        $stmt->bindValue(":schedule_id", $scheduleId, PDO::PARAM_INT);
         $result = $stmt->execute();
         $reservedSeatList = array();
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
