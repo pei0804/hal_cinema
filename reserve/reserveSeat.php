@@ -16,7 +16,11 @@ $smarty->setTemplateDir($_SERVER['DOCUMENT_ROOT'] . "/hal_cinema/templates/");
 $smarty->setCompileDir($_SERVER['DOCUMENT_ROOT'] . "/hal_cinema/templates_c/");
 
 $tplPath = "reserve/seat.tpl";
-//$scheduleId = trim($_GET["scheduleId"]);
+$scheduleId = $_GET["scheduleId"];
+if(!isset($scheduleId)) {
+    $scheduleId = "1";
+    print "<h1>値が正しく取れていません。代わりにテストデータを格納しています。</h1>";
+}
 //if(loginCheck()) {
 //    $validationMsgs[] = "ログインしていないか、前回ログインしてから一定時間が経過しています。もう一度ログインし直してください。";
 //    $smarty->assign("validationMsgs", $validationMsgs);
@@ -29,24 +33,27 @@ $tplPath = "reserve/seat.tpl";
         // シアターID取得
         $movieScheduleDAO = new MovieScheduleDAO($db);
         $movieSchedule = null;
-        $movieSchedule = $movieScheduleDAO->findByPK(1);
+        $movieSchedule = $movieScheduleDAO->findByPK($scheduleId);
 
-//        // 座席情報
-//        $seatDAO = new SeatDAO($db);
-//        $seats = array();
-//        $seats = $seatDAO->findByTheaterId($movieSchedule->getTheaterId());
-//        $smarty->assign("seats", $seats);
-//
-//        // 予約情報
-//        $reserveDAO = new ReserveDAO($db);
-//        $reserves = array();
-//        $reserves = $reserveDAO->findByScheduleId(1);
-//        $smarty->assign("reserves", $reserves);
+        // 予約情報
+        $reserveDAO = new ReserveDAO($db);
+        $reserves = array();
+        $reserves = $reserveDAO->findByScheduleId($scheduleId);
 
         // 座席情報
         $seatDAO = new SeatDAO($db);
         $seats = array();
-        $seats = $seatDAO->findByTheaterId(1);
+        $seats = $seatDAO->findByTheaterId($scheduleId);
+
+        // 予約情報
+        $reserveDAO = new ReserveDAO($db);
+        $reserves = array();
+        $reserves = $reserveDAO->findByScheduleId($scheduleId);
+        $reservesArray = array();
+        foreach ($reserves as $reserve) {
+            $reservesArray[] = $reserve->getSeat();
+        }
+        $smarty->assign("reserves", json_encode($reservesArray));
 
         // HACK 便宜的に小文字でインクリメントしているが、出来れば大文字でインクリメントした方がスマート
         $seatRowAlphabet = 'a';
@@ -67,17 +74,9 @@ $tplPath = "reserve/seat.tpl";
         $seatMap[] = strtoupper($seatRow);
         $seatColumns[] = strtoupper($seatRowAlphabet);
 
-        var_dump($seatMap);
-
-//        $smarty->assign("scheduleId", $scheduleId);
+        $smarty->assign("scheduleId", $scheduleId);
         $smarty->assign("seatColumns", json_encode($seatColumns));
         $smarty->assign("seatMap", json_encode($seatMap));
-
-        // 予約情報
-        $reserveDAO = new ReserveDAO($db);
-        $reserves = array();
-        $reserves = $reserveDAO->findByScheduleId(1);
-        $smarty->assign("reserves", $reserves);
 
     } catch (PDOException $ex) {
         print_r($ex);

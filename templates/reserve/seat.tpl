@@ -31,7 +31,7 @@
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="/hal_cinema/js/jquery.seat-charts.min.js"></script>
-<script src="/hal_cinema/js/seatShow.js" id="seatData" data-map='{$seatMap}' data-columns='{$seatColumns}'></script>
+<script src="/hal_cinema/js/seatShow.js" id="seatData" data-map='{$seatMap}' data-columns='{$seatColumns}' data-reserves='{$reserves}'></script>
 
 </body>
 </html>
