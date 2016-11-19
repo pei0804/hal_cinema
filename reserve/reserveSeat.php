@@ -16,7 +16,7 @@ $smarty->setTemplateDir($_SERVER['DOCUMENT_ROOT'] . "/hal_cinema/templates/");
 $smarty->setCompileDir($_SERVER['DOCUMENT_ROOT'] . "/hal_cinema/templates_c/");
 
 $tplPath = "reserve/seat.tpl";
-$scheduleId = trim($_GET["scheduleId"]);
+//$scheduleId = trim($_GET["scheduleId"]);
 //if(loginCheck()) {
 //    $validationMsgs[] = "ログインしていないか、前回ログインしてから一定時間が経過しています。もう一度ログインし直してください。";
 //    $smarty->assign("validationMsgs", $validationMsgs);
@@ -49,39 +49,29 @@ $scheduleId = trim($_GET["scheduleId"]);
         $seats = $seatDAO->findByTheaterId(1);
 
         // HACK 便宜的に小文字でインクリメントしているが、出来れば大文字でインクリメントした方がスマート
-//        $seatRowAlphabet = 'a';
+        $seatRowAlphabet = 'a';
         // AAAAAAAAAなどの１列の席情報を格納する
         $seatRow = "";
         // View側のjsのためのmap情報
         $seatMap = array();
         foreach ($seats as $seat) {
-
             // TODO 現状はA~Zまでしか許容していない。AAまで席が増える場合は対応必要
-            if($seatRowAlphabet == "" && $seatRowAlphabet != substr($seat->getSeat(), 0, 1)) {
-                $seatRowAlphabet = substr($seat->getSeat(), 0, 1);
+            if(strtoupper($seatRowAlphabet) != substr($seat->getSeat(), 0, 1)) {
+                $seatColumns[] = strtoupper($seatRowAlphabet);
+                $seatRowAlphabet++;
+                $seatMap[] =  strtoupper($seatRow);
+                $seatRow = "";
             }
-
-            if($seatRowAlphabet == substr($seat->getSeat(), 0, 1) && strlen($seat->getSeat()) != 0) {
-                $seatRow .= substr($seat->getSeat(), 0, 1);
-            } else {
-                $seatMap[] = $seatRow;
-            }
-
-
-//            if(strtoupper($seatRowAlphabet) == substr($seat->getSeat(), 0, 1)) {
-//                $seatRow .= strtoupper($seatRowAlphabet);
-//            } else {
-//                $seatMap[] = $seatRow;
-//                $seatRow = "";
-//                ++$seatRowAlphabet;
-//                $seatRow .= strtoupper($seatRowAlphabet);
-//            }
+            $seatRow .= $seatRowAlphabet;
         }
-        $seatMap[] = $seatRow;
+        $seatMap[] = strtoupper($seatRow);
+        $seatColumns[] = strtoupper($seatRowAlphabet);
 
-        $smarty->assign("scheduleId", $scheduleId);
-        $smarty->assign("seats", $seats);
-        $smarty->assign("seatMap", $seatMap);
+        var_dump($seatMap);
+
+//        $smarty->assign("scheduleId", $scheduleId);
+        $smarty->assign("seatColumns", json_encode($seatColumns));
+        $smarty->assign("seatMap", json_encode($seatMap));
 
         // 予約情報
         $reserveDAO = new ReserveDAO($db);
