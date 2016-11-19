@@ -134,6 +134,7 @@ CREATE TABLE `m_movie` (
   `description` text,
   `movie_time` time DEFAULT NULL,
   `release_date` date DEFAULT NULL,
+  `img_url` text,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `member_id` int(10) UNSIGNED NOT NULL
