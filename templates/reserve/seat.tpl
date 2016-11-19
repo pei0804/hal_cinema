@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>JSC Demo</title>
+    <title>座席選択</title>
 
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/hal_cinema/css/jquery.seat-charts.css">
