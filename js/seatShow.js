@@ -71,7 +71,7 @@ $(document).ready(function() {
     });
 
     //let's pretend some seats have already been booked
-    sc.get(['A_2', 'B_1']).status('unavailable');
+    sc.get($('#seatData').data('reserves')).status('unavailable');
 
 });
 
