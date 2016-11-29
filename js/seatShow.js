@@ -56,5 +56,5 @@ $('#checkout').click(function () {
     var arr = $(".reserveSeats").map(function(){
         return $(this).text();
     }).get();
-    alert(arr);
+    $('#seats').val(arr);
 });

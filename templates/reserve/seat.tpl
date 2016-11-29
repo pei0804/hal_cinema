@@ -17,7 +17,10 @@
             <h2>座席選択状態</h2>
             <h3><span id="counter">0</span>席選択中</h3>
             <ul id="selected-seats"></ul>
-            <button id="checkout">Checkout &raquo;</button>
+            <form id="form" action="/hal_cinema/reserve/reserveTicket.php" method="post">
+                <input type="hidden" name="seats" id="seats">
+                <input type="submit" id="checkout" value="券種選択へ">
+            </form>
             <div id="legend"></div>
         </div>
     </div>
