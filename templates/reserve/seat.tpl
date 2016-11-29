@@ -11,19 +11,13 @@
 <div class="wrapper">
     <div class="container">
         <div id="seat-map">
-            <div class="front-indicator">Front</div>
-
+            <div class="front-indicator">スクリーン</div>
         </div>
         <div class="booking-details">
-            <h2>Booking Details</h2>
-
-            <h3> Selected Seats (<span id="counter">0</span>):</h3>
+            <h2>座席選択状態</h2>
+            <h3><span id="counter">0</span>席選択中</h3>
             <ul id="selected-seats"></ul>
-
-            Total: <b>$<span id="total">0</span></b>
-
-            <button class="checkout-button">Checkout &raquo;</button>
-
+            <button id="checkout">Checkout &raquo;</button>
             <div id="legend"></div>
         </div>
     </div>
