@@ -19,6 +19,7 @@
             <ul id="selected-seats"></ul>
             <form id="form" action="/hal_cinema/reserve/reserveTicket.php" method="post">
                 <input type="hidden" name="seats" id="seats">
+                <input type="hidden" name="scheduleId" id="scheduleId" value="{$scheduleId}">
                 <input type="submit" id="checkout" class="submitButton" value="券種選択へ">
             </form>
             <div id="legend"></div>
