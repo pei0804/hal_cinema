@@ -1,8 +1,7 @@
 $(document).ready(function() {
 
     var $cart = $('#selected-seats'),
-        $counter = $('#counter'),
-        $total = $('#total'),
+        $counter = $('#counter');
 
         sc = $('#seat-map').seatCharts({
             map: $('#seatData').data('map'),
@@ -46,9 +45,7 @@ $(document).ready(function() {
     $('#selected-seats').on('click', '.cancel-cart-item', function () {
         sc.get($(this).parents('li:first').data('seatId')).click();
     });
-
     sc.get($('#seatData').data('reserves')).status('unavailable');
-
 });
 
 
