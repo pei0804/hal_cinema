@@ -15,7 +15,7 @@ $list = array();
 try {
     $db = new PDO(DB_DNS, DB_USERNAME, DB_PASSWORD);
     $movieScheduleDAO = new MovieScheduleDAO($db);
-    $list = $movieScheduleDAO->findByDate("2016-11-10");
+    $list = $movieScheduleDAO->findByDate($date = date('2016-11-30'));
     $smarty->assign("list", $list);
 } catch (PDOException $ex) {
     print_r($ex);
@@ -26,3 +26,4 @@ try {
 }
 
 $smarty->display($tplPath);
+?>
