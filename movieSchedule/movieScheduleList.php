@@ -13,16 +13,22 @@ $tplPath = "movieSchedule/list.tpl";
 
 $list = array();
 try {
-    $db = new PDO(DB_DNS, DB_USERNAME, DB_PASSWORD);
-    $movieScheduleDAO = new MovieScheduleDAO($db);
-    $list = $movieScheduleDAO->findByDate($date = date('2016-11-30'));
-    $smarty->assign("list", $list);
+	$db = new PDO(DB_DNS, DB_USERNAME, DB_PASSWORD);
+	$movieScheduleDAO = new MovieScheduleDAO($db);
+
+	$date = date('2016-11-10');
+	if(isset($_GET["date"])) {
+		$date = $_GET["date"];
+	}
+	$list = $movieScheduleDAO->findByDate($date);
+
+	$smarty->assign("list", $list);
 } catch (PDOException $ex) {
-    print_r($ex);
-    $smarty->assign("errorMsg", "DB接続に失敗しました。");
-    $tplPath = "error.tpl";
+print_r($ex);
+	$smarty->assign("errorMsg", "DB接続に失敗しました。");
+	$tplPath = "error.tpl";
 } finally {
-    $db = null;
+	$db = null;
 }
 
 $smarty->display($tplPath);
