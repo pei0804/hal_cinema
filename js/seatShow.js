@@ -6,7 +6,7 @@ $(document).ready(function() {
         sc = $('#seat-map').seatCharts({
             map: $('#seatData').data('map'),
             naming : {
-                top : true,
+                top : false,
                 getLabel : function (character, row, column) {
                 },
                 rows: $('#seatData').data('columns'),

@@ -1,40 +1,53 @@
 body {
     font-family: 'Lato', sans-serif;
 }
+
 a {
     color: #b71a4c;
 }
+
 .front-indicator {
     width: 90%;
-    margin: 5px 32px 15px 32px;
     background-color: #f6f6f6;
-    color: #adadad;
+    margin-bottom: 20px;
+    color: #212121;
     text-align: center;
-    padding: 3px;
+    padding: 15px 0;
     border-radius: 5px;
+}
+
+.wrapper {
+    width: 100%;
+    text-align: center;
 }
 
 .container {
     margin: 0 auto;
-    width: 760px;
+    width: 960px;
+    overflow: hidden;
 }
 
 .booking-details {
-    float: left;
+    float: right;
+    width: 450px;
     text-align: left;
     margin-left: 35px;
     font-size: 12px;
     position: relative;
-    height: 401px;
+    height: 500px;
+    padding-left: 50px;
 }
-.booking-details h2 {
-    margin: 25px 0 20px 0;
-    font-size: 17px;
+
+.seatSelectBox {
+    width: 330px;
+    float: left;
 }
+
 .booking-details h3 {
     margin: 5px 5px 0 0;
     font-size: 14px;
 }
+
 div.seatCharts-cell {
     color: #182C4E;
     height: 35px;
@@ -42,62 +55,163 @@ div.seatCharts-cell {
     line-height: 35px;
 
 }
+
 div.seatCharts-seat {
     color: #FFFFFF;
     cursor: pointer;
 }
+
 div.seatCharts-row {
     height: 55px;
 }
+
 div.seatCharts-seat.available {
     background-color: #B9DEA0;
 
 }
+
 div.seatCharts-seat.available.first-class {
     /* 	background: url(vip.png); */
     background-color: #3a78c3;
 }
+
 div.seatCharts-seat.focused {
     background-color: #76B474;
 }
+
 div.seatCharts-seat.selected {
     background-color: #E6CAC4;
 }
+
 div.seatCharts-seat.unavailable {
     background-color: #472B34;
 }
+
 div.seatCharts-container {
-    border-right: 1px dotted #adadad;
-    width: 380px;
-    padding: 40px;
+    width: 330px;
+    padding: 20px;
     float: left;
+    padding-bottom: 20px;
 }
-div.seatCharts-legend {
-    padding-left: 0px;
-    position: absolute;
-    bottom: 16px;
+
+#legend {
+    text-align: left;
 }
+
 ul.seatCharts-legendList {
     padding-left: 0px;
 }
+
 span.seatCharts-legendDescription {
     margin-left: 5px;
     line-height: 30px;
 }
+
 .submitButton {
-    display: block;
     margin: 10px 0;
     font-size: 14px;
-    background: #09C;
-    border: 1px solid #DDD;
-    color: #FFF;
-    text-shadow:1px 1px 3px rgba(0,0,0,0.5);
-    width: 100px;
-    padding: 10px 0;
+    background: #b71c1c linear-gradient(160deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 100%) repeat scroll 0 0;
+    color: #fff;
+    border: none;
+    margin-bottom: 20px;
+    cursor: pointer;
 }
+
+.cancelButton {
+    border: #bdbdbd 1px solid;
+    color: #616161;
+    display: block;
+    text-decoration: none;
+}
+
+.l-button {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 60px;
+    padding-bottom: 0;
+    padding-top: 0;
+    width: 100%;
+    border-radius: 10px;
+}
+
 #selected-seats {
     height: 140px;
     overflow-y: scroll;
     overflow-x: none;
     width: 170px;
+}
+
+#seat-map {
+    width: 360px;
+}
+
+div.seatCharts-space {
+    display: none;
+}
+
+.buyInfo__header {
+    background: #eee;
+    font-size: 20px;
+    padding: 15px;
+}
+
+.buyInfo__subtitle {
+    font-size: 16px;
+    color: #adadad;
+    padding-bottom: 10px;
+    padding: 10px;
+}
+
+.buyInfo__text {
+    font-size: 18px;
+    padding-bottom: 20px;
+    margin: 0;
+    text-align: left;
+    padding: 10px;
+}
+
+.seatType {
+    width: 100%;
+    clear: left;
+    margin: 0 auto;
+    border: 1px solid #eee;
+    overflow: hidden;
+    padding: 5px 0 10px;
+    margin-bottom: 50px;
+}
+
+.seatType ul {
+    text-align: left;
+    list-style-type: none;
+}
+
+.seatType li {
+    float: left;
+    width: 90px;
+    overflow: hidden;
+}
+
+.seatType__reserved,
+.seatType__vacancy,
+.seatType__selected {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    float: left;
+    clear: left;
+    margin-top: 14px;
+    margin-right: 10px;
+}
+
+.seatType__reserved {
+    background: #472b34;
+
+}
+
+.seatType__vacancy {
+    background: #b9dea0;
+}
+
+.seatType__selected {
+    background: #e6cac4;
 }
