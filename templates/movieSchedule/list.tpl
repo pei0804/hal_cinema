@@ -1,47 +1,33 @@
 <!doctype html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="/hal_cinema/css/movieSchedule.css">
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="/hal_cinema/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/hal_cinema/css/movieSchedule.css">
 </head>
 <body>
-<table>
-    <thead>
-		<tr>
-			<th>映画ID</th>
-			<th>タイトル名</th>
-			<th>シアターID</th>
-			<th>ムービースケジュールID</th>
-			<th>作品時間</th>
-			<th>リリース日</th>
-			<th>始まる時間</th>
-			<th>終わる時間</th>
-		</tr>
-    </thead>
-    <tbody>
-		{foreach from=$list item=item name="movieScheduleListLoop"}
-		<tr>
-			<td>{$item->getMovieId()}</td>
-			<td>{$item->getTitle()}</td>
-			<td>{$item->getTheaterId()}</td>
-			<td>
-				{$MSI = $item->getMovieScheduleIdArray()}
-				{foreach from=","|explode:$MSI item=scheduleId}
-					<a href="../reserve/reserveSeat.php?scheduleId={$scheduleId}">{$scheduleId}</a>
-				{/foreach}
-			</td>
-			<td>{$item->getMovieTime()}</td>
-			<td>{$item->getReleaseDate()}</td>
-			<td>{$item->getStartAtArray()}</td>
-			<td>{$item->getEndAtArray()}</td>
-		</tr>
-		{foreachelse}
-		<tr>
-			<td colspan="8">現在公開中の映画はありません。</td>
-		</tr>
+
+	<ul class="dateList">
+		{section name=time start=$smarty.now loop=$smarty.now+604800 step=86400}
+			<li><a href="../movieSchedule/movieScheduleList.php?date={$smarty.section.time.index|date_format:'%m-%d'}">{$smarty.section.time.index|date_format:"%m&#26376;%d&#26085;"}</a></li>
+		{/section}
+	</ul>
+
+	{foreach from=$list item=item name="movieScheduleListLoop"}
+
+	<h3 class="movieTitle">{$item->getTitle()}</h3>
+	<p class="theaterNo">シアター{$item->getTheaterId()}</p>
+	<ul class="scheduleList">
+		{foreach from=$item->getMovieScheduleIdArray() key=scheduleId item=time}
+		<li>
+			<a href="../reserve/reserveSeat.php?scheduleId={$scheduleId}">{$time}</a>
+		</li>
 		{/foreach}
-    </tbody>
-</table>
+	</ul>
+
+	{foreachelse}
+		<p>現在公開中の映画はありません。</p>
+	{/foreach}
 </body>
 </html>
