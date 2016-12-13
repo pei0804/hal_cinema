@@ -16,10 +16,9 @@ $smarty->setTemplateDir($_SERVER['DOCUMENT_ROOT'] . "/hal_cinema/templates/");
 $smarty->setCompileDir($_SERVER['DOCUMENT_ROOT'] . "/hal_cinema/templates_c/");
 
 $tplPath = "reserve/seat.tpl";
-$scheduleId = $_GET["scheduleId"];
-if(!isset($scheduleId)) {
-    $scheduleId = "1";
-    print "<h1>値が正しく取れていません。代わりにテストデータを格納しています。</h1>";
+$scheduleId = "1";
+if(isset($_GET["scheduleId"])) {
+    $scheduleId = $_GET["scheduleId"];
 }
 //if(loginCheck()) {
 //    $validationMsgs[] = "ログインしていないか、前回ログインしてから一定時間が経過しています。もう一度ログインし直してください。";
@@ -34,6 +33,7 @@ if(!isset($scheduleId)) {
         $movieScheduleDAO = new MovieScheduleDAO($db);
         $movieSchedule = null;
         $movieSchedule = $movieScheduleDAO->findByPK($scheduleId);
+        $smarty->assign("movieSchedule", $movieSchedule);
 
         // 予約情報
         $reserveDAO = new ReserveDAO($db);

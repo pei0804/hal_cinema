@@ -80,7 +80,7 @@ class MovieSchedule {
      */
     public function setStartAt($startAt)
     {
-        $this->start_at = $startAt;
+        $this->startAt = $startAt;
     }
 
     /**
@@ -96,7 +96,7 @@ class MovieSchedule {
      */
     public function setEndAt($endAt)
     {
-        $this->end_at = $endAt;
+        $this->endAt = $endAt;
     }
 
     /**
