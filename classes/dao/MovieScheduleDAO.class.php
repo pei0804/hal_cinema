@@ -65,8 +65,27 @@ class MovieScheduleDAO
             $startAtArray = split(',', $row["start_at_array"]);
             $endAtArray = split(',', $row["end_at_array"]);
 
+            // 空席情報取得
+            $sql2 = "SELECT COUNT(*) as reserve_count,";
+            $sql2 .= "th.seat_count as seat_count ";
+            $sql2 .= "FROM t_reserve r ";
+            $sql2 .= "INNER JOIN t_movie_schedule ms ON ms.id = r.schedule_id ";
+            $sql2 .= "INNER JOIN m_theater th ON th.id = ms.theater_id ";
+            $sql2 .= "INNER JOIN t_ticket t ON t.reserve_id = r.id ";
+            $sql2 .= "WHERE r.schedule_id = :scheduleId ";
+            $sql2 .= "GROUP BY r.schedule_id ";
             $movieScheduleIdArray = array();
+
             foreach ($movieScheduleIdArrayTmp as $key => $value) {
+                $stmt = $this->db->prepare($sql2);
+                $stmt->bindValue(":scheduleId", $value, PDO::PARAM_INT);
+                $result = $stmt->execute();
+
+                $vacancyState = 0;
+                if ($result && $row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $vacancyState = num2per($row["reserve_count"], $row["seat_count"]);
+                }
+                $vacancyStateArray[$key] = $vacancyState;
                 $startAtArray[$key] = date("H:i", strtotime($startAtArray[$key]));
                 $endAtArray[$key] = date("H:i", strtotime($endAtArray[$key]));
                 $movieScheduleIdArray[$value] = $startAtArray[$key] . '<span class="endTime">～' . $endAtArray[$key] . '</span>';
@@ -79,6 +98,7 @@ class MovieScheduleDAO
             $movieScheduleEntity->setMovieScheduleIdArray($movieScheduleIdArray);
             $movieScheduleEntity->setMovieTime($movieTime);
             $movieScheduleEntity->setReleaseDate($releaseDate);
+            $movieScheduleEntity->setVacancyStateArray($vacancyStateArray);
             $movieScheduleEntity->setStartAtArray($startAtArray);
             $movieScheduleEntity->setEndAtArray($endAtArray);
 
@@ -86,4 +106,27 @@ class MovieScheduleDAO
         }
         return $movieScheduleList;
     }
+}
+
+// 座席の割合の計算とその状態を記号で表現する
+function num2per($number, $total, $precision = 0)
+{
+    if ($number < 0) {
+        return "◯";
+    }
+
+    try {
+        $percent = ($number / $total) * 100;
+        $ratio = round($percent, $precision);
+        if (20 >= $ratio && $ratio >= 0) {
+            return "◯";
+        }
+        if (100 == $ratio) {
+            return "×";
+        }
+        return "△";
+    } catch (Exception $e) {
+        return 0;
+    }
+
 }

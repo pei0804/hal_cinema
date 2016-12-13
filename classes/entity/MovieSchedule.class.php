@@ -18,6 +18,7 @@ class MovieSchedule {
     // ETC
     private $startAtArray;
     private $endAtArray;
+    private $vacancyStateArray;
 
     /**
      * @return mixed
@@ -209,6 +210,22 @@ class MovieSchedule {
     public function setEndAtArray($endAtArray)
     {
         $this->endAtArray = $endAtArray;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVacancyStateArray()
+    {
+        return $this->vacancyStateArray;
+    }
+
+    /**
+     * @param mixed $vacancyStateArray
+     */
+    public function setVacancyStateArray($vacancyStateArray)
+    {
+        $this->vacancyStateArray = $vacancyStateArray;
     }
 
 }
