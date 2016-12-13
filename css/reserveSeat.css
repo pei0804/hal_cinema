@@ -50,9 +50,9 @@ a {
 
 div.seatCharts-cell {
     color: #182C4E;
-    height: 25px;
-    width: 25px;
-    line-height: 25px;
+    height: 35px;
+    width: 35px;
+    line-height: 35px;
 
 }
 
@@ -62,7 +62,7 @@ div.seatCharts-seat {
 }
 
 div.seatCharts-row {
-    height: 35px;
+    height: 55px;
 }
 
 div.seatCharts-seat.available {
@@ -135,14 +135,18 @@ span.seatCharts-legendDescription {
 }
 
 #selected-seats {
-    max-height: 90px;
+    height: 140px;
     overflow-y: scroll;
     overflow-x: none;
     width: 170px;
 }
 
 #seat-map {
-    width: 350px;
+    width: 360px;
+}
+
+div.seatCharts-space {
+    display: none;
 }
 
 .buyInfo__header {
