@@ -1,6 +1,7 @@
 <?php
 
-class MovieScheduleDAO {
+class MovieScheduleDAO
+{
     private $db;
 
     public function __construct(PDO $db)
@@ -10,22 +11,32 @@ class MovieScheduleDAO {
         $this->db = $db;
     }
 
-    public function findByPK($id) {
-        $sql = "SELECT * FROM t_movie_schedule WHERE id = :id";
+    public function findByPK($scheduleId)
+    {
+        $sql = "SELECT ";
+        $sql .= "ms.theater_id as id,";
+        $sql .= "m.title as title,";
+        $sql .= "ms.theater_id as theater_id,";
+        $sql .= "ms.start_at as start_at,";
+        $sql .= "ms.end_at as end_at ";
+        $sql .= "FROM t_movie_schedule ms ";
+        $sql .= "INNER JOIN m_movie m ON m.id = ms.movie_id ";
+        $sql .= "WHERE ms.id = :scheduleId";
+
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+        $stmt->bindValue(":scheduleId", $scheduleId, PDO::PARAM_STR);
         $result = $stmt->execute();
         $movieScheduleEntity = null;
-        if($result && $row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if ($result && $row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $id = $row["id"];
-            $movieId = $row["movie_id"];
+            $title = $row["title"];
             $theaterId = $row["theater_id"];
             $startAt = $row["start_at"];
             $endAt = $row["end_at"];
 
             $movieScheduleEntity = new MovieSchedule();
             $movieScheduleEntity->setId($id);
-            $movieScheduleEntity->setMovieId($movieId);
+            $movieScheduleEntity->setTitle($title);
             $movieScheduleEntity->setTheaterId($theaterId);
             $movieScheduleEntity->setStartAt($startAt);
             $movieScheduleEntity->setEndAt($endAt);
@@ -33,9 +44,10 @@ class MovieScheduleDAO {
         return $movieScheduleEntity;
     }
 
-    public function findByDate($date) {
+    public function findByDate($date)
+    {
 
-        $sql  = "SELECT ";
+        $sql = "SELECT ";
         $sql .= "m.id as movie_id,";
         $sql .= "m.title as title,";
         $sql .= "ms.theater_id as theater_id,";
@@ -46,14 +58,14 @@ class MovieScheduleDAO {
         $sql .= "GROUP_CONCAT(ms.end_at order by ms.id) as end_at_array ";
         $sql .= "FROM t_movie_schedule ms ";
         $sql .= "INNER JOIN m_movie m ON m.id = ms.movie_id ";
-        $sql .= "WHERE DATE_FORMAT(start_at, '%Y-%m-%d') = STR_TO_DATE(:date ,'%Y-%m-%d')";
+        $sql .= "WHERE DATE_FORMAT(start_at, '%Y-%m-%d') = STR_TO_DATE(:date ,'%Y-%m-%d') ";
         $sql .= "GROUP BY m.id";
 
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(":date", date("Y-m-d", strtotime($date)), PDO::PARAM_STR);
         $result = $stmt->execute();
         $movieScheduleList = array();
-        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $movieId = $row["movie_id"];
             $title = $row["title"];
             $theaterId = $row["theater_id"];
