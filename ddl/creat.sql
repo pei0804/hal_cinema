@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016 年 11 月 19 日 21:13
+-- Generation Time: 2016 年 12 月 13 日 21:13
 -- サーバのバージョン： 10.1.10-MariaDB
 -- PHP Version: 5.6.19
 
@@ -134,7 +134,6 @@ CREATE TABLE `m_movie` (
   `description` text,
   `movie_time` time DEFAULT NULL,
   `release_date` date DEFAULT NULL,
-  `img_url` text,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `member_id` int(10) UNSIGNED NOT NULL
@@ -216,15 +215,15 @@ CREATE TABLE `m_theater` (
 -- テーブルのデータのダンプ `m_theater`
 --
 
-INSERT INTO `m_theater` (`id`, `created_at`, `updated_at`, `member_id`) VALUES
-(1, '2016-11-09 03:07:27', '2016-11-09 03:07:27', 31),
-(2, '2016-11-09 03:07:27', '2016-11-09 03:07:27', 31),
-(3, '2016-11-09 03:07:27', '2016-11-09 03:07:27', 31),
-(4, '2016-11-09 03:07:27', '2016-11-09 03:07:27', 31),
-(5, '2016-11-09 03:07:27', '2016-11-09 03:07:27', 31),
-(6, '2016-11-09 03:07:27', '2016-11-09 03:07:27', 31),
-(7, '2016-11-09 03:07:27', '2016-11-09 03:07:27', 31),
-(8, '2016-11-09 03:07:27', '2016-11-09 03:07:27', 31);
+INSERT INTO `m_theater` (`id`, `seat_count`, `created_at`, `updated_at`, `member_id`) VALUES
+(1, 32, '2016-11-09 03:07:27', '2016-12-13 12:11:11', 31),
+(2, 32, '2016-11-09 03:07:27', '2016-12-13 12:11:13', 31),
+(3, 32, '2016-11-09 03:07:27', '2016-12-13 12:11:14', 31),
+(4, 32, '2016-11-09 03:07:27', '2016-12-13 12:11:15', 31),
+(5, 32, '2016-11-09 03:07:27', '2016-12-13 12:11:16', 31),
+(6, 32, '2016-11-09 03:07:27', '2016-12-13 12:11:17', 31),
+(7, 32, '2016-11-09 03:07:27', '2016-12-13 12:11:18', 31),
+(8, 32, '2016-11-09 03:07:27', '2016-12-13 12:11:19', 31);
 
 -- --------------------------------------------------------
 
@@ -460,7 +459,7 @@ ALTER TABLE `m_movie`
 -- AUTO_INCREMENT for table `m_theater`
 --
 ALTER TABLE `m_theater`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `t_movie_schedule`
 --
