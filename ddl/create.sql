@@ -206,6 +206,7 @@ INSERT INTO `m_price_type` (`id`, `name`, `price`, `description`, `class`, `week
 DROP TABLE IF EXISTS `m_theater`;
 CREATE TABLE `m_theater` (
   `id` int(10) UNSIGNED NOT NULL,
+  `seat_count` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `member_id` int(10) UNSIGNED NOT NULL
