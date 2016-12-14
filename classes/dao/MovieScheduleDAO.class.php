@@ -126,7 +126,7 @@ function num2per($number, $total)
         }
         return "△";
     } catch (Exception $e) {
-        return 0;
+        return "×";
     }
 
 }
