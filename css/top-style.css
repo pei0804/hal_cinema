@@ -1,261 +1,291 @@
-	* {
- 	   margin: 0;
- 	   padding: 0;
-	}
-	body {
-		background: #222;
-	}
-	#wrapper {
-		width: 100%;
-		margin:0 auto;
-		color: #fff;
-	}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #222;
+}
+
+#wrapper {
+    width: 100%;
+    margin: 0 auto;
+    color: #fff;
+}
 
 /*----  ヘッダー  --------------------------*/
 
-	header {
-		width: 100%;
-		height: 80px;
-		background-color: #1280CF;
-		position: relative;
-	}
+header {
+    width: 100%;
+    height: 80px;
+    background-color: #1280CF;
+    position: relative;
+}
 
 /*----  HALシネマ、ログイン、新規会員登録  --------------------------*/
 
-		h1 {
-			float: left;
-			margin-left: 80px;
-			margin-top: 15px;
-		}
-		h1 a {
-			color: #fff;
-			text-decoration: none;
-		}
-		header li{
-			list-style: none;
-			margin-right: 15px;
-			margin-top: 20px;
-		}
-		header ul{
-			position: absolute;
-			right: 80px;
-		}
-		.login {
-		    background: url("../img/login.png") no-repeat;
-		    float: left;
-		}
-		.login a {
-		    width: 108px;
-		    height: 40px;
-		    background: url("../img/login.png") no-repeat;
-		    display: block;
-		    text-indent: -9999px;
-		}
-		.login a:hover {
-		    background-image: url("../img/login1-1.png");
-		}
-		.newmem {
-		    background: url("../img/newmember.png") no-repeat;
-		    float: left;
-		}
-		.newmem a {
-		    width: 156px;
-		    height: 40px;
-		    background: url("../img/newmember.png") no-repeat;
-		    display: block;
-		    text-indent: -9999px;
-		}
-		.newmem a:hover {
-		    background-image: url("../img/newmember1-1.png");
-		}
+h1 {
+    float: left;
+    margin-left: 80px;
+    margin-top: 15px;
+}
+
+h1 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header li {
+    list-style: none;
+    margin-right: 15px;
+    margin-top: 20px;
+}
+
+header ul {
+    position: absolute;
+    right: 80px;
+}
+
+.login {
+    background: url("../img/login.png") no-repeat;
+    float: left;
+}
+
+.login a {
+    width: 108px;
+    height: 40px;
+    background: url("../img/login.png") no-repeat;
+    display: block;
+    text-indent: -9999px;
+}
+
+.login a:hover {
+    background-image: url("../img/login1-1.png");
+}
+
+.newmem {
+    background: url("../img/newmember.png") no-repeat;
+    float: left;
+}
+
+.newmem a {
+    width: 156px;
+    height: 40px;
+    background: url("../img/newmember.png") no-repeat;
+    display: block;
+    text-indent: -9999px;
+}
+
+.newmem a:hover {
+    background-image: url("../img/newmember1-1.png");
+}
 
 /*----  ナビゲーション  --------------------------*/
 
+nav {
+    margin-top: 40px;
+}
 
-	nav {
-		margin-top: 40px;
-	}
-		nav li {
-			list-style: none;
-			margin-left: 7.8%;
-		}
-		.nav1 {
-		    background: url("../img/nav1.png") no-repeat;
-		    float: left;
-		}
-		.nav1 a {
-		    width: 294px;
-		    height: 83px;
-		    background: url("../img/nav1.png") no-repeat;
-		    display: block;
-		    text-indent: -9999px;
-		}
-		.nav1 a:hover {
-		    background-image: url("../img/nav1-1.png");
-		}
-		.nav2 {
-		    background: url("../img/nav2.png") no-repeat;
-		    float: left;
-		}
-		.nav2 a {
-		    width: 294px;
-		    height: 83px;
-		    background: url("../img/nav2.png") no-repeat;
-		    display: block;
-		    text-indent: -9999px;
-		}
-		.nav2 a:hover {
-		    background-image: url("../img/nav2-1.png");
-		}
-		.nav3 {
-		    background: url("../img/nav3.png") no-repeat;
-		    float: left;
-		}
-		.nav3 a {
-		    width: 294px;
-		    height: 83px;
-		    background: url("../img/nav3.png") no-repeat;
-		    display: block;
-		    text-indent: -9999px;
-		}
-		.nav3 a:hover {
-		    background-image: url("../img/nav3-1.png");
-		}
+nav li {
+    list-style: none;
+    margin-left: 7.8%;
+}
 
+.nav1 {
+    background: url("../img/nav1.png") no-repeat;
+    float: left;
+}
+
+.nav1 a {
+    width: 294px;
+    height: 83px;
+    background: url("../img/nav1.png") no-repeat;
+    display: block;
+    text-indent: -9999px;
+}
+
+.nav1 a:hover {
+    background-image: url("../img/nav1-1.png");
+}
+
+.nav2 {
+    background: url("../img/nav2.png") no-repeat;
+    float: left;
+}
+
+.nav2 a {
+    width: 294px;
+    height: 83px;
+    background: url("../img/nav2.png") no-repeat;
+    display: block;
+    text-indent: -9999px;
+}
+
+.nav2 a:hover {
+    background-image: url("../img/nav2-1.png");
+}
+
+.nav3 {
+    background: url("../img/nav3.png") no-repeat;
+    float: left;
+}
+
+.nav3 a {
+    width: 294px;
+    height: 83px;
+    background: url("../img/nav3.png") no-repeat;
+    display: block;
+    text-indent: -9999px;
+}
+
+.nav3 a:hover {
+    background-image: url("../img/nav3-1.png");
+}
 
 /*----  画像スライド --------------------------*/
 
-	#slideshow {
-		padding-top: 40px;
-		text-align: center;
-		clear: left;
-	}
+#slideshow {
+    padding-top: 40px;
+    text-align: center;
+    clear: left;
+}
 
 /*----  pickup,topics,informationの見出し  --------------------------*/
 
-
-	h2 {
-		text-align: center;
-		margin-bottom: 50px;
-	}
+h2 {
+    text-align: center;
+    margin-bottom: 50px;
+}
 
 /*----  ピックアップ  --------------------------*/
 
+#pickup {
+    margin-top: 120px;
+    background-color: #111;
+    padding-top: 70px;
+    padding-bottom: 80px;
+}
 
-	#pickup {
-		margin-top: 120px;
-		background-color: #111;
-		padding-top: 70px;
-		padding-bottom: 80px;
-	}
-		#movielist {
-			background-color: #710;
-			width: 100%;
-			height: 480px;
-		}
-		#movie1,#movie2,#movie3,#movie4,#movie5 {
-			width: 200px;
-			height: 350px;
-			background-color: #000;
-			margin-left: 48px;
-			margin-top: 60px;
-			float: left;
-		}
-		.rank1,.rank2,.rank3,.rank4,.rank5 {
-			margin-left: 10px;
-			float: left;
-		}
-		.title1,.title2,.title3,.title4,.title5 {
-			float: left;
-			margin-top: 20px;
-			margin-left: 10px;
-			color: #fff;
-		}
+#movielist {
+    background-color: #710;
+    width: 100%;
+    height: 480px;
+}
+
+#movie1, #movie2, #movie3, #movie4, #movie5 {
+    width: 200px;
+    height: 350px;
+    background-color: #000;
+    margin-left: 48px;
+    margin-top: 60px;
+    float: left;
+}
+
+.rank1, .rank2, .rank3, .rank4, .rank5 {
+    margin-left: 10px;
+    float: left;
+}
+
+.title1, .title2, .title3, .title4, .title5 {
+    float: left;
+    margin-top: 20px;
+    margin-left: 10px;
+    color: #fff;
+}
 
 /*----  トピックス  --------------------------*/
 
-	#topics {
-		padding-top: 70px;
-		padding-bottom: 80px;
-	}
-		#topicbox {
-			width: 80%;
-			margin-left: 8%;
-			padding: 10px 0px 0px 90px;
-		}
-		#topic1,#topic2,#topic3 {
-			width: 80%;
-			height: 220px;
-			padding: 40px;
-			border-top:solid 2px #fff;
-		}
-		#topic3 {
-			border-bottom:solid 2px #fff;
-		}
+#topics {
+    padding-top: 70px;
+    padding-bottom: 80px;
+}
 
-		#topic1 img,#topic2 img,#topic3 img{
-			float: left;
-			margin-right: 30px;
-		}
+#topicbox {
+    width: 80%;
+    margin-left: 8%;
+    padding: 10px 0px 0px 90px;
+}
+
+#topic1, #topic2, #topic3 {
+    width: 80%;
+    height: 220px;
+    padding: 40px;
+    border-top: solid 2px #fff;
+}
+
+#topic3 {
+    border-bottom: solid 2px #fff;
+}
+
+#topic1 img, #topic2 img, #topic3 img {
+    float: left;
+    margin-right: 30px;
+}
 
 /*----  インフォメーション  --------------------------*/
 
+#information {
+    background-color: #111;
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
 
-	#information {
-		background-color: #111;
-		padding-top: 80px;
-		padding-bottom: 100px;	
-	}
-		#infobox {
-			width: 75%;
-			margin-left: 8%;
-			background-color: #1280CF;
-			padding: 30px 0px 60px 90px;
-			border-radius: 10px;
-		}
-		#infobox li {
-			padding-top: 35px;
-		}
-		#infobox a {
-			float: right;
-			margin-right: 50px;
-			color: #000;
+#infobox {
+    width: 75%;
+    margin-left: 8%;
+    background-color: #1280CF;
+    padding: 30px 0px 60px 90px;
+    border-radius: 10px;
+}
 
-		}
+#infobox li {
+    padding-top: 35px;
+}
+
+#infobox a {
+    float: right;
+    margin-right: 50px;
+    color: #000;
+
+}
 
 /*----  フッター  --------------------------*/
 
+footer {
+    width: 100%;
+    height: 80px;
+    background-color: #1280CF;
+}
 
-	footer {
-		width: 100%;
-		height: 80px;
-		background-color: #1280CF;
-	}
-	#footleft {
-		width: 20%;
-		padding-top: 5px;
-	}
-	#footright {
-		margin-top: 10px;
-	}
-	#footright li {
-		float: left;
-		list-style: none;
-		padding: 30px;
-	}
-	#footright ul{
-		margin-left:30px;
-	}
-	#footright a{
-		color: #000;
-	}
+#footleft {
+    width: 20%;
+    padding-top: 5px;
+}
+
+#footright {
+    margin-top: 10px;
+}
+
+#footright li {
+    float: left;
+    list-style: none;
+    padding: 30px;
+}
+
+#footright ul {
+    margin-left: 30px;
+}
+
+#footright a {
+    color: #000;
+}
 
 /*----  コピーライト  --------------------------*/
 
-		.copy {
-			width: 100%;
-			background-color: #0339AF;
-			text-align: center;
-			padding-top: 10px;
-			padding-bottom: 10px;
-		}
+.copy {
+    width: 100%;
+    background-color: #0339AF;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
