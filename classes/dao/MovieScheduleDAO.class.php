@@ -100,7 +100,7 @@ class MovieScheduleDAO
                 $stmt2->bindValue(":scheduleId", $value, PDO::PARAM_INT);
                 $result = $stmt2->execute();
 
-                $vacancyState = VACANCY_CROSS;
+                $vacancyState = VACANCY_CIRCLE;
                 if ($result && $row = $stmt2->fetch(PDO::FETCH_ASSOC)) {
                     $vacancyState = num2per($row["reserve_count"], $row["seat_count"]);
                 }
@@ -130,7 +130,7 @@ class MovieScheduleDAO
 // 座席の割合の計算とその状態を記号で表現する
 function num2per($number, $total)
 {
-    if ($number < 0) {
+    if ($number <= 0) {
         return VACANCY_CIRCLE;
     }
 
