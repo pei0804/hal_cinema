@@ -7,16 +7,16 @@
 	<link rel="stylesheet" type="text/css" href="/hal_cinema/css/movieSchedule.css">
 </head>
 <body>
-
 	<ul class="dateList">
 		{section name=time start=$smarty.now loop=$smarty.now+604800 step=86400}
-			<li><a href="../movieSchedule/movieScheduleList.php?date={$smarty.section.time.index|date_format:'%m-%d'}">{$smarty.section.time.index|date_format:"%m&#26376;%d&#26085;"}</a></li>
+			<li><a href="../movieSchedule/movieScheduleList.php?date={$smarty.section.time.index|date_format:'%Y-%m-%d'}">{$smarty.section.time.index|date_format:"%m&#26376;%d&#26085;"}</a></li>
 		{/section}
 	</ul>
 
 	{foreach from=$list item=item name="movieScheduleListLoop"}
 
 	<h3 class="movieTitle">{$item->getTitle()}</h3>
+	<p class="movieImg"><img src="../../img/{$item->getImgUrl()}" alt=""></p>
 	<p class="theaterNo">シアター{$item->getTheaterId()}</p>
 	<ul class="scheduleList">
 		{foreach from=$item->getMovieScheduleIdArray() key=scheduleId item=time}

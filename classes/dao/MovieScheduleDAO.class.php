@@ -43,6 +43,7 @@ class MovieScheduleDAO
     {
         $sql = "SELECT ";
         $sql .= "m.id as movie_id,";
+        $sql .= "m.img_url as img_url,";
         $sql .= "m.title as title,";
         $sql .= "ms.theater_id as theater_id,";
         $sql .= "GROUP_CONCAT(ms.id order by ms.id) as movie_schedule_id_array,";
@@ -62,6 +63,7 @@ class MovieScheduleDAO
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $movieId = $row["movie_id"];
             $title = $row["title"];
+            $imgUrl = $row["img_url"];
             $theaterId = $row["theater_id"];
             $movieScheduleIdArrayTmp = split(',', $row["movie_schedule_id_array"]);
             $movieTime = $row["movie_time"];
@@ -98,6 +100,7 @@ class MovieScheduleDAO
             $movieScheduleEntity = new MovieSchedule();
             $movieScheduleEntity->setMovieId($movieId);
             $movieScheduleEntity->setTitle($title);
+            $movieScheduleEntity->setImgUrl($imgUrl);
             $movieScheduleEntity->setTheaterId($theaterId);
             $movieScheduleEntity->setMovieScheduleIdArray($movieScheduleIdArray);
             $movieScheduleEntity->setMovieTime($movieTime);

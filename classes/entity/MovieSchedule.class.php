@@ -11,6 +11,7 @@ class MovieSchedule {
 
     // INNER JOIN
     private $title;
+    private $imgUrl;
     private $movieTime;
     private $releaseDate;
     private $movieScheduleIdArray;
@@ -130,6 +131,22 @@ class MovieSchedule {
     public function setTitle($title)
     {
         $this->title = $title;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImgUrl()
+    {
+        return $this->imgUrl;
+    }
+
+    /**
+     * @param mixed $imgUrl
+     */
+    public function setImgUrl($imgUrl)
+    {
+        $this->imgUrl = $imgUrl;
     }
 
     /**

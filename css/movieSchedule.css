@@ -32,14 +32,21 @@
 	font-size: 22px;
 	font-weight: normal;
 }
-
+.movieImg {
+	width: 50%;
+	float: left;
+}
+.movieImg img {
+	border: solid 1px #ccc;
+}
 .theaterNo {
 }
 
 .scheduleList {
+	width: 50%;
 	padding: 30px 15px;
 	background-color: #555;
-	overflow: hidden;
+	float: left;
 }
 
 .scheduleList li {
