@@ -21,7 +21,9 @@
 	<ul class="scheduleList">
 		{foreach from=$item->getMovieScheduleIdArray() key=scheduleId item=time}
 		<li>
-			<a href="../reserve/reserveSeat.php?scheduleId={$scheduleId}">{$time}</a>
+			<a href="../reserve/reserveSeat.php?scheduleId={$scheduleId}">
+				{$time}
+			</a>
 		</li>
 		{/foreach}
 	</ul>
