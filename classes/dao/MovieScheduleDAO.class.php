@@ -83,12 +83,12 @@ class MovieScheduleDAO
             $movieScheduleIdArray = array();
 
             foreach ($movieScheduleIdArrayTmp as $key => $value) {
-                $stmt = $this->db->prepare($sql2);
-                $stmt->bindValue(":scheduleId", $value, PDO::PARAM_INT);
-                $result = $stmt->execute();
+                $stmt2 = $this->db->prepare($sql2);
+                $stmt2->bindValue(":scheduleId", $value, PDO::PARAM_INT);
+                $result = $stmt2->execute();
 
                 $vacancyState = VACANCY_CROSS;
-                if ($result && $row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($result && $row = $stmt2->fetch(PDO::FETCH_ASSOC)) {
                     $vacancyState = num2per($row["reserve_count"], $row["seat_count"]);
                 }
                 $vacancyStateArray[$key] = $vacancyState;
