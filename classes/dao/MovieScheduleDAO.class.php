@@ -1,5 +1,9 @@
 <?php
 
+const VACANCY_CIRCLE    = "<span class='vacancy circle'>◯</span>";
+const VACANCY_TRIANGLE  = "<span class='vacancy triangle'>△</span>";
+const VACANCY_CROSS     = "<span class='vacancy cross'>×</span>";
+
 class MovieScheduleDAO
 {
     private $db;
@@ -81,14 +85,14 @@ class MovieScheduleDAO
                 $stmt->bindValue(":scheduleId", $value, PDO::PARAM_INT);
                 $result = $stmt->execute();
 
-                $vacancyState = "×";
+                $vacancyState = VACANCY_CROSS;
                 if ($result && $row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     $vacancyState = num2per($row["reserve_count"], $row["seat_count"]);
                 }
                 $vacancyStateArray[$key] = $vacancyState;
                 $startAtArray[$key] = date("H:i", strtotime($startAtArray[$key]));
                 $endAtArray[$key] = date("H:i", strtotime($endAtArray[$key]));
-                $movieScheduleIdArray[$value] = $startAtArray[$key] . '<span class="endTime">～' . $endAtArray[$key] . '</span>';
+                $movieScheduleIdArray[$value] = $startAtArray[$key] . '<span class="endTime">～' . $endAtArray[$key] . '</span>' . $vacancyState;
             }
 
             $movieScheduleEntity = new MovieSchedule();
@@ -98,7 +102,6 @@ class MovieScheduleDAO
             $movieScheduleEntity->setMovieScheduleIdArray($movieScheduleIdArray);
             $movieScheduleEntity->setMovieTime($movieTime);
             $movieScheduleEntity->setReleaseDate($releaseDate);
-            $movieScheduleEntity->setVacancyStateArray($vacancyStateArray);
             $movieScheduleEntity->setStartAtArray($startAtArray);
             $movieScheduleEntity->setEndAtArray($endAtArray);
 
@@ -112,21 +115,21 @@ class MovieScheduleDAO
 function num2per($number, $total)
 {
     if ($number < 0) {
-        return "◯";
+        return VACANCY_CIRCLE;
     }
 
     try {
         $percent = ($number / $total) * 100;
         $ratio = floor($percent);
         if (20 >= $ratio && $ratio >= 0) {
-            return "◯";
+            return VACANCY_CIRCLE;
         }
         if (100 == $ratio) {
-            return "×";
+            return VACANCY_CROSS;
         }
-        return "△";
+        return VACANCY_TRIANGLE;
     } catch (Exception $e) {
-        return "×";
+        return VACANCY_CROSS;
     }
 
 }
