@@ -2,13 +2,13 @@
 <html>
 <head>
     <title>座席選択</title>
-
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/hal_cinema/css/jquery.seat-charts.css">
     <link rel="stylesheet" type="text/css" href="/hal_cinema/css/reserveSeat.css">
 </head>
 <body>
 <div class="wrapper">
+    {include file='include/header.tpl'}
     <div class="container">
         <form id="form" action="/hal_cinema/reserve/reserveTicket.php" method="post">
             <div class="seatSelectBox">
@@ -51,8 +51,8 @@
             </div>
         </form>
     </div>
+    {include file='include/footer.tpl'}
 </div>
-
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="/hal_cinema/js/jquery.seat-charts.min.js"></script>
 <script src="/hal_cinema/js/seatShow.js" id="seatData" data-map='{$seatMap}' data-columns='{$seatColumns}'

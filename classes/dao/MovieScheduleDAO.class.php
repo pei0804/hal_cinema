@@ -17,13 +17,25 @@ class MovieScheduleDAO
 
     public function findByPK($id)
     {
-        $sql = "SELECT * FROM t_movie_schedule WHERE id = :id";
+        $sql = "SELECT ";
+        $sql .= "ms.id as id,";
+        $sql .= "ms.theater_id as theater_id,";
+        $sql .= "ms.movie_id as movie_id,";
+        $sql .= "ms.start_at as start_at,";
+        $sql .= "ms.end_at as end_at,";
+        $sql .= "m.title as title,";
+        $sql .= "m.description as description ";
+        $sql .= "FROM t_movie_schedule ms ";
+        $sql .= "INNER JOIN m_movie m ON m.id = ms.movie_id ";
+        $sql .= "WHERE ms.id = :scheduleId";
+
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+        $stmt->bindValue(":scheduleId", $id, PDO::PARAM_INT);
         $result = $stmt->execute();
         $movieScheduleEntity = null;
         if ($result && $row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $id = $row["id"];
+            $title = $row["title"];
             $movieId = $row["movie_id"];
             $theaterId = $row["theater_id"];
             $startAt = $row["start_at"];
@@ -32,6 +44,7 @@ class MovieScheduleDAO
             $movieScheduleEntity = new MovieSchedule();
             $movieScheduleEntity->setId($id);
             $movieScheduleEntity->setMovieId($movieId);
+            $movieScheduleEntity->setTitle($title);
             $movieScheduleEntity->setTheaterId($theaterId);
             $movieScheduleEntity->setStartAt($startAt);
             $movieScheduleEntity->setEndAt($endAt);
@@ -89,7 +102,7 @@ class MovieScheduleDAO
                 $stmt2->bindValue(":scheduleId", $value, PDO::PARAM_INT);
                 $result = $stmt2->execute();
 
-                $vacancyState = VACANCY_CROSS;
+                $vacancyState = VACANCY_CIRCLE;
                 if ($result && $row = $stmt2->fetch(PDO::FETCH_ASSOC)) {
                     $vacancyState = num2per($row["reserve_count"], $row["seat_count"]);
                 }
@@ -120,7 +133,7 @@ class MovieScheduleDAO
 // 座席の割合の計算とその状態を記号で表現する
 function num2per($number, $total)
 {
-    if ($number < 0) {
+    if ($number <= 0) {
         return VACANCY_CIRCLE;
     }
 
