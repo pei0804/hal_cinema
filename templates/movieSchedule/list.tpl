@@ -22,10 +22,11 @@
 </head>
 <body>
 <div id="wrapper">
+	{include file='include/header.tpl'}
 	<div class="contentIn">
 		<ul class="slider multiple-item dateList">
 			{section name=time start=$smarty.now loop=$smarty.now+1209600 step=86400}
-			<li><a href="../movieSchedule/movieScheduleList.php?date={$smarty.section.time.index|date_format:'%Y-%m-%d'}">{$smarty.section.time.index|date_format:"%m&#26376;%d&#26085; (%a)"|replace:"Sun":"<span class='sun'>日</span>"|replace:"Mon":"月"|replace:"Tue":"火"|replace:"Wed":"水"|replace:"Thu":"木"|replace:"Fri":"金"|replace:"Sat":"<span class='sat'>土</span>"}</a></li>
+			<li><a href="../movieSchedule/movieScheduleList.php?date={$smarty.section.time.index|date_format:'%Y-%m-%d'}">{$smarty.section.time.index|date_format:"%m&#26376;%d&#26085; <br>(%a)"|replace:"Sun":"<span class='sun'>日</span>"|replace:"Mon":"月"|replace:"Tue":"火"|replace:"Wed":"水"|replace:"Thu":"木"|replace:"Fri":"金"|replace:"Sat":"<span class='sat'>土</span>"}</a></li>
 			{/section}
 		</ul>
 
@@ -55,5 +56,6 @@
 		{/foreach}
 	</div>
 </div>
+{include file='include/footer.tpl'}
 </body>
 </html>
