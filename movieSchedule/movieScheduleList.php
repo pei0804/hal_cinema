@@ -21,8 +21,10 @@ try {
 		$date = $_GET["date"];
 	}
 	$list = $movieScheduleDAO->findByDate($date);
+	$week = array("日", "月", "火", "水", "木", "金", "土");
 
 	$smarty->assign("list", $list);
+	$smarty->assign("week", $week);
 } catch (PDOException $ex) {
 print_r($ex);
 	$smarty->assign("errorMsg", "DB接続に失敗しました。");
